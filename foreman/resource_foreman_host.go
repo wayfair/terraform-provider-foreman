@@ -61,6 +61,13 @@ func resourceForemanHost() *schema.Resource {
 				),
 			},
 
+			"managed": &schema.Schema{
+				Type:        schema.TypeBool,
+				Optional:    true,
+				Default:     true,
+				Description: "Whether or not this host is marked as managed by Foreman.",
+			},
+
 			"enable_bmc": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -274,6 +281,7 @@ func buildForemanHost(d *schema.ResourceData) *api.ForemanHost {
 
 	host.Name = d.Get("name").(string)
 	host.Comment = d.Get("comment").(string)
+	host.Managed = d.Get("managed").(bool)
 
 	if attr, ok = d.GetOk("domain_id"); ok {
 		host.DomainId = attr.(int)
@@ -427,6 +435,7 @@ func setResourceDataFromForemanHost(d *schema.ResourceData, fh *api.ForemanHost)
 
 	d.Set("name", fh.Name)
 	d.Set("comment", fh.Comment)
+	d.Set("managed", fh.Managed)
 	d.Set("domain_id", fh.DomainId)
 	d.Set("environment_id", fh.EnvironmentId)
 	d.Set("hostgroup_id", fh.HostgroupId)
@@ -435,6 +444,7 @@ func setResourceDataFromForemanHost(d *schema.ResourceData, fh *api.ForemanHost)
 	// In partial mode, flag keys below as completed successfully
 	d.SetPartial("name")
 	d.SetPartial("comment")
+	d.SetPartial("managed")
 	d.SetPartial("domain_id")
 	d.SetPartial("environment_id")
 	d.SetPartial("hostgroup_id")
@@ -497,8 +507,12 @@ func resourceForemanHostCreate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*api.Client)
 	h := buildForemanHost(d)
 
-	// NOTE(ALL): Set the build flag to true on host create
-	h.Build = true
+	// NOTE(ALL): Set the build flag to true on host create, but only for managed hosts
+	if h.Managed {
+		h.Build = true
+	} else {
+		h.Build = false
+	}
 
 	log.Debugf("ForemanHost: [%+v]", h)
 	hostRetryCount := d.Get("retry_count").(int)
@@ -588,8 +602,12 @@ func resourceForemanHostUpdate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*api.Client)
 	h := buildForemanHost(d)
 
-	// NOTE(ALL): Set the build flag to true on host create
-	h.Build = true
+	// NOTE(ALL): Set the build flag to true on host update, but only for managed hosts
+	if h.Managed {
+		h.Build = true
+	} else {
+		h.Build = false
+	}
 
 	log.Debugf("ForemanHost: [%+v]", h)
 
@@ -717,7 +735,7 @@ func resourceForemanHostDelete(d *schema.ResourceData, meta interface{}) error {
 		log.Debugf("deleting host that has interfaces set")
 		// iterate through each of the host interfaces and tag them for
 		// removal from the list
-		for idx, _ := range h.InterfacesAttributes {
+		for idx := range h.InterfacesAttributes {
 			h.InterfacesAttributes[idx].Destroy = true
 		}
 		log.Debugf("host: [%+v]", h)

@@ -83,13 +83,14 @@ func RandForemanHost() api.ForemanHost {
 	obj.ForemanObject = fo
 
 	obj.Build = rand.Intn(2) > 0
+	obj.Managed = rand.Intn(2) > 0
 	obj.OperatingSystemId = rand.Intn(100)
 	obj.DomainId = rand.Intn(100)
 	obj.HostgroupId = rand.Intn(100)
 	obj.EnvironmentId = rand.Intn(100)
 
 	obj.InterfacesAttributes = make([]api.ForemanInterfacesAttribute, rand.Intn(5))
-	for idx, _ := range obj.InterfacesAttributes {
+	for idx := range obj.InterfacesAttributes {
 		obj.InterfacesAttributes[idx] = api.ForemanInterfacesAttribute{
 			Id:         rand.Intn(100),
 			SubnetId:   rand.Intn(100),
@@ -316,7 +317,12 @@ func ResourceForemanHostRequestDataTestCases(t *testing.T) []TestCaseRequestData
 	obj = *buildForemanHost(rd)
 	// NOTE(ALL): See note in Create and Update functions for build flag
 	//   override
-	obj.Build = true
+	if obj.Managed {
+		obj.Build = true
+	} else {
+		obj.Build = false
+	}
+
 	reqData, _ := json.Marshal(obj)
 
 	return []TestCaseRequestData{

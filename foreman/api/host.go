@@ -61,6 +61,8 @@ type ForemanHost struct {
 	BMCSuccess bool
 	// Additional information about this host
 	Comment string `json:"comment"`
+	// Boolean for whether Foreman manages this host
+	Managed bool `json:"managed"`
 	// Nested struct defining any interfaces associated with the Host
 	InterfacesAttributes []ForemanInterfacesAttribute `json:"interfaces_attributes"`
 }
@@ -125,6 +127,7 @@ func (fh ForemanHost) MarshalJSON() ([]byte, error) {
 
 	fhMap["name"] = fh.Name
 	fhMap["comment"] = fh.Comment
+	fhMap["managed"] = fh.Managed
 	fhMap["build"] = fh.Build
 	fhMap["domain_id"] = intIdToJSONString(fh.DomainId)
 	fhMap["operatingsystem_id"] = intIdToJSONString(fh.OperatingSystemId)
@@ -133,9 +136,12 @@ func (fh ForemanHost) MarshalJSON() ([]byte, error) {
 	if len(fh.InterfacesAttributes) > 0 {
 		fhMap["interfaces_attributes"] = fh.InterfacesAttributes
 	}
-	log.Debugf("fhMap: [%+v]", fhMap)
+	hostMap := map[string]interface{}{
+		"host": fhMap,
+	}
+	log.Debugf("hostMap: [%+v]", fhMap)
 
-	return json.Marshal(fhMap)
+	return json.Marshal(hostMap)
 }
 
 // Custom JSON unmarshal function. Unmarshal to the unexported JSON struct
@@ -175,6 +181,9 @@ func (fh *ForemanHost) UnmarshalJSON(b []byte) error {
 	}
 	if fh.Comment, ok = fhMap["comment"].(string); !ok {
 		fh.Comment = ""
+	}
+	if fh.Managed, ok = fhMap["managed"].(bool); !ok {
+		fh.Managed = true
 	}
 	if _, ok = fhMap["domain_id"].(float64); !ok {
 		fh.DomainId = 0
