@@ -55,6 +55,16 @@ type ForemanHost struct {
 	HostgroupId int `json:"hostgroup_id"`
 	// ID of the operating system to put on the host
 	OperatingSystemId int `json:"operatingsystem_id"`
+	// Provision method use by this host, Options are:
+	// build - Build using normal provisioning method
+	// image - Build from a reference image/ISO
+	ProvisionMethod string `json:"provision_method"`
+	// PXE Loader assigned to this host. Must be one of:
+	// PXELinux BIOS, PXELinux UEFI, Grub UEFI, Grub2 UEFI,
+	// Grub2 UEFI SecureBoot, Grub2 UEFI HTTP, Grub2 UEFI HTTPS,
+	// Grub2 UEFI HTTPS SecureBoot, iPXE Embedded, iPXE UEFI HTTP,
+	//iPXE Chain BIOS, iPXE Chain UEFI
+	PXELoader string `json:"pxe_loader"`
 	// Whether or not to Enable BMC Functionality on this host
 	EnableBMC bool
 	// Boolean to track success of BMC Calls
@@ -128,6 +138,8 @@ func (fh ForemanHost) MarshalJSON() ([]byte, error) {
 	fhMap["build"] = fh.Build
 	fhMap["domain_id"] = intIdToJSONString(fh.DomainId)
 	fhMap["operatingsystem_id"] = intIdToJSONString(fh.OperatingSystemId)
+	fhMap["provision_method"] = fh.ProvisionMethod
+	fhMap["pxe_loader"] = fh.PXELoader
 	fhMap["hostgroup_id"] = intIdToJSONString(fh.HostgroupId)
 	fhMap["environment_id"] = intIdToJSONString(fh.EnvironmentId)
 	if len(fh.InterfacesAttributes) > 0 {
@@ -195,6 +207,12 @@ func (fh *ForemanHost) UnmarshalJSON(b []byte) error {
 		fh.OperatingSystemId = 0
 	} else {
 		fh.OperatingSystemId = int(fhMap["operatingsystem_id"].(float64))
+	}
+	if fh.ProvisionMethod, ok = fhMap["provision_method"].(string); !ok {
+		fh.ProvisionMethod = ""
+	}
+	if fh.PXELoader, ok = fhMap["pxe_loader"].(string); !ok {
+		fh.PXELoader = ""
 	}
 
 	return nil
