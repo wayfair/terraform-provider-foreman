@@ -1,0 +1,28 @@
+{
+	"created_at": "2017-04-27 11:48:25 -0400",
+	"updated_at": "2017-04-27 11:48:25 -0400",
+	"name": "aaanderson_test",
+	"id": 6196,
+	"template_combinations": [{
+		"id": 152,
+		"provisioning_template_id": null,
+		"provisioning_template_name": null,
+		"hostgroup_id": 166,
+		"hostgroup_name": "terraformtesthostgroup",
+		"environment_id": 6196,
+		"environment_name": "aaanderson_test",
+		"config_template_id": null,
+		"config_template_name": null
+	}, {
+		"id": 153,
+		"provisioning_template_id": null,
+		"provisioning_template_name": null,
+		"hostgroup_id": null,
+		"hostgroup_name": null,
+		"environment_id": 6196,
+		"environment_name": "aaanderson_test",
+		"config_template_id": null,
+		"config_template_name": null
+	}],
+	"puppetclasses": []
+}

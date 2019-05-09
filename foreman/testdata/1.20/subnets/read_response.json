@@ -1,0 +1,56 @@
+{
+  "network": "10.228.247.0",
+  "cidr": 24,
+  "mask": "255.255.255.0",
+  "priority": null,
+  "vlanid": "",
+  "gateway": "10.228.247.1",
+  "dns_primary": "10.225.18.202",
+  "dns_secondary": "10.225.18.203",
+  "from": "10.228.247.1",
+  "to": "10.228.247.199",
+  "created_at": "2017-04-19 19:14:26 UTC",
+  "updated_at": "2017-11-16 21:10:29 UTC",
+  "ipam": "DHCP",
+  "boot_mode": "DHCP",
+  "id": 352,
+  "name": "10.228.247.0 BO1",
+  "network_address": "10.228.247.0/24",
+  "dhcp": {
+    "name": "build01.dev.bo1.csnzoo.com",
+    "id": 38,
+    "url": "https://build01.dev.bo1.csnzoo.com:8443"
+  },
+  "tftp": {
+    "name": "build01.dev.bo1.csnzoo.com",
+    "id": 38,
+    "url": "https://build01.dev.bo1.csnzoo.com:8443"
+  },
+  "dns": {
+    "name": "bo1bindprimaryc1n01.host.bo1.csnzoo.com",
+    "id": 39,
+    "url": "https://bo1bindprimaryc1n01.host.bo1.csnzoo.com:8443"
+  },
+  "domains": [
+    {
+      "id": 1,
+      "name": "csnzoo.com"
+    },
+    {
+      "id": 35,
+      "name": "dev.bo1.csnzoo.com"
+    }
+  ],
+  "interfaces": [
+    {
+      "id": 32650,
+      "name": "tunnelhost01.dev.bo1.csnzoo.com",
+      "ip": "10.228.247.2",
+      "mac": "00:50:56:b4:f4:48",
+      "identifier": "ens192",
+      "primary": true,
+      "provision": true,
+      "type": "interface"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+	"created_at": "2013-05-17 17:38:04 -0400",
+	"updated_at": "2013-05-17 17:38:04 -0400",
+	"name": "production",
+	"id": 1,
+	"template_combinations": [{
+		"id": 127,
+		"provisioning_template_id": 100,
+		"provisioning_template_name": "VMware Bootstrap",
+		"hostgroup_id": 144,
+		"hostgroup_name": "SE1/VM",
+		"environment_id": 1,
+		"environment_name": "production",
+		"config_template_id": 100,
+		"config_template_name": "VMware Bootstrap"
+	}, {
+		"id": 101,
+		"provisioning_template_id": 100,
+		"provisioning_template_name": "VMware Bootstrap",
+		"hostgroup_id": 98,
+		"hostgroup_name": "BO1/VM",
+		"environment_id": 1,
+		"environment_name": "production",
+		"config_template_id": 100,
+		"config_template_name": "VMware Bootstrap"
+	}, {
+		"id": 106,
+		"provisioning_template_id": 100,
+		"provisioning_template_name": "VMware Bootstrap",
+		"hostgroup_id": 79,
+		"hostgroup_name": "IE2/VM",
+		"environment_id": 1,
+		"environment_name": "production",
+		"config_template_id": 100,
+		"config_template_name": "VMware Bootstrap"
+	}],
+	"puppetclasses": []
+}

@@ -1,0 +1,54 @@
+{
+	"fullname": "",
+	"created_at": "2017-04-25 14:19:59 -0400",
+	"updated_at": "2018-09-18 13:11:04 -0400",
+	"id": 39,
+	"name": "bar.domain",
+	"dns_id": 39,
+	"dns": null,
+	"subnets": [{
+		"id": 303,
+		"name": "10.0.1.0 BO1",
+		"description": null,
+		"network_address": "10.0.1.0/24"
+	}, {
+		"id": 304,
+		"name": "10.0.2.0 BO1",
+		"description": null,
+		"network_address": "10.0.2.0/24"
+	}],
+	"interfaces": [
+    {
+		"id": 41771,
+		"name": "foo2.bar.domain",
+		"ip": null,
+		"ip6": null,
+		"mac": "00:0c:29:56:b2:84",
+		"mtu": null,
+		"fqdn": "foo2.bar.domain",
+		"identifier": "ens192",
+		"primary": true,
+		"provision": true,
+		"type": "interface"
+	}, {
+		"id": 41772,
+		"name": "foo.bar.domain",
+		"ip": null,
+		"ip6": null,
+		"mac": "00:0c:29:8c:ae:83",
+		"mtu": null,
+		"fqdn": "foo.bar.domain",
+		"identifier": "ens192",
+		"primary": true,
+		"provision": true,
+		"type": "interface"
+	}],
+	"parameters": [{
+		"priority": 1,
+		"created_at": "2017-04-25 14:19:59 -0400",
+		"updated_at": "2017-04-25 14:19:59 -0400",
+		"id": 566,
+		"name": "install_server",
+		"value": "foo.bar.domain"
+	}]
+}
