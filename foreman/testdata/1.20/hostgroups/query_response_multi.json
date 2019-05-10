@@ -25,7 +25,7 @@
 		"ptable_id": 117,
 		"ptable_name": "Wayfair CentOS 7",
 		"medium_id": 29,
-		"medium_name": "Pulp01.host.bo1.csnzoo.com",
+		"medium_name": "else.where",
 		"pxe_loader": "PXELinux UEFI",
 		"subnet6_id": null,
 		"subnet6_name": null,

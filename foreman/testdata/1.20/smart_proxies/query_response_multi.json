@@ -12,9 +12,9 @@
     {
       "created_at": "2016-09-06 16:58:37 UTC",
       "updated_at": "2017-07-27 14:27:26 UTC",
-      "name": "build01.dev.bo1.csnzoo.com",
+      "name": "else.where",
       "id": 38,
-      "url": "https://build01.dev.bo1.csnzoo.com:8443",
+      "url": "https://else.where:8443",
       "features": [
         {
           "name": "TFTP",
@@ -29,9 +29,9 @@
     {
       "created_at": "2017-08-03 20:01:46 UTC",
       "updated_at": "2017-08-03 20:01:46 UTC",
-      "name": "build02.dev.bo1.csnzoo.com",
+      "name": "else.where",
       "id": 51,
-      "url": "https://build02.dev.bo1.csnzoo.com:8443",
+      "url": "https://else.where:8443",
       "features": [
         {
           "name": "TFTP",
@@ -46,9 +46,9 @@
     {
       "created_at": "2017-02-21 22:31:51 UTC",
       "updated_at": "2017-02-21 22:31:51 UTC",
-      "name": "puppet4ca01.dev.bo1.csnzoo.com",
+      "name": "else.where",
       "id": 43,
-      "url": "https://puppet4ca01.dev.bo1.csnzoo.com:8443",
+      "url": "https://else.where:8443",
       "features": [
         {
           "name": "Puppet CA",
@@ -61,7 +61,7 @@
       "updated_at": "2017-04-18 01:08:54 UTC",
       "name": "Puppet 4 Dev CA Cluster",
       "id": 45,
-      "url": "https://dev.puppet4ca.service.bo1.csnzoo.com:8443",
+      "url": "https://else.where:8443",
       "features": [
         {
           "name": "Puppet CA",

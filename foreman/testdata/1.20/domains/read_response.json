@@ -8,12 +8,12 @@
 	"dns": null,
 	"subnets": [{
 		"id": 303,
-		"name": "10.0.1.0 BO1",
+		"name": "10.0.1.0",
 		"description": null,
 		"network_address": "10.0.1.0/24"
 	}, {
 		"id": 304,
-		"name": "10.0.2.0 BO1",
+		"name": "10.0.2.0",
 		"description": null,
 		"network_address": "10.0.2.0/24"
 	}],
@@ -23,7 +23,7 @@
 		"name": "foo2.bar.domain",
 		"ip": null,
 		"ip6": null,
-		"mac": "00:0c:29:56:b2:84",
+		"mac": "DE:ED:DE:ED:DE:ED",
 		"mtu": null,
 		"fqdn": "foo2.bar.domain",
 		"identifier": "ens192",
@@ -35,7 +35,7 @@
 		"name": "foo.bar.domain",
 		"ip": null,
 		"ip6": null,
-		"mac": "00:0c:29:8c:ae:83",
+		"mac": "DE:ED:DE:ED:DE:ED",
 		"mtu": null,
 		"fqdn": "foo.bar.domain",
 		"identifier": "ens192",
