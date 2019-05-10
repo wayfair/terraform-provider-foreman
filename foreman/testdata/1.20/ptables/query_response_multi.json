@@ -34,14 +34,14 @@
       "os_family": "Redhat",
       "created_at": "2016-09-26 13:14:36 UTC",
       "updated_at": "2016-09-26 13:14:45 UTC",
-      "name": "Wayfair CentOS",
+      "name": "CentOS",
       "id": 133
     },
     {
       "os_family": "Redhat",
       "created_at": "2016-09-26 13:14:26 UTC",
       "updated_at": "2016-09-26 13:14:44 UTC",
-      "name": "Wayfair CentOS 7",
+      "name": "CentOS 7",
       "id": 117
     }
   ]
