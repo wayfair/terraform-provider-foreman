@@ -135,6 +135,50 @@ func resourceForemanHost() *schema.Resource {
 				ValidateFunc: validation.IntAtLeast(0),
 				Description:  "ID of the operating system to put on the host.",
 			},
+
+			"provision_method": &schema.Schema{
+				Type:     schema.TypeString,
+				ForceNew: true,
+				Optional: true,
+				Default:  "build",
+				ValidateFunc: validation.StringInSlice([]string{
+					"build",
+					"image",
+					// NOTE(ALL): false - do not ignore case when comparing values
+				}, false),
+				Description: fmt.Sprintf("The method used to provision the host. ('build' by default)" +
+					"Must be one of: build, image",
+				),
+			},
+
+			"pxe_loader": &schema.Schema{
+				Type:     schema.TypeString,
+				ForceNew: true,
+				Optional: true,
+				Default:  "PXELinux UEFI",
+				ValidateFunc: validation.StringInSlice([]string{
+					"None",
+					"PXELinux BIOS",
+					"PXELinux UEFI",
+					"Grub UEFI",
+					"Grub2 UEFI",
+					"Grub2 UEFI SecureBoot",
+					"Grub2 UEFI HTTP",
+					"Grub2 UEFI HTTPS",
+					"Grub2 UEFI HTTPS",
+					"SecureBoot",
+					"iPXE Embedded",
+					"iPXE UEFI HTTP",
+					"iPXE Chain BIOS",
+					"iPXE Chain UEFI",
+					// NOTE(ALL): false - do not ignore case when comparing values
+				}, false),
+				Description: fmt.Sprintf("DHCP filename option (Grub2/PXELinux by default)." +
+					"Must be one of: None, PXELinux BIOS, PXELinux UEFI, Grub UEFI, Grub2 UEFI," +
+					"Grub2 UEFI SecureBoot, Grub2 UEFI HTTP, Grub2 UEFI HTTPS, Grub2 UEFI HTTPS" +
+					"SecureBoot, iPXE Embedded, iPXE UEFI HTTP, iPXE Chain BIOS, iPXE Chain UEFI",
+				),
+			},
 		},
 	}
 }
@@ -287,6 +331,8 @@ func buildForemanHost(d *schema.ResourceData) *api.ForemanHost {
 	if attr, ok = d.GetOk("operatingsystem_id"); ok {
 		host.OperatingSystemId = attr.(int)
 	}
+	host.ProvisionMethod = d.Get("provision_method").(string)
+	host.PXELoader = d.Get("pxe_loader").(string)
 
 	host.InterfacesAttributes = buildForemanInterfacesAttributes(d)
 
@@ -431,15 +477,19 @@ func setResourceDataFromForemanHost(d *schema.ResourceData, fh *api.ForemanHost)
 	d.Set("environment_id", fh.EnvironmentId)
 	d.Set("hostgroup_id", fh.HostgroupId)
 	d.Set("operatingsystem_id", fh.OperatingSystemId)
+	d.Set("provision_method", fh.ProvisionMethod)
+	d.Set("pxe_loader", fh.PXELoader)
 
 	// In partial mode, flag keys below as completed successfully
 	d.SetPartial("name")
 	d.SetPartial("comment")
 	d.SetPartial("domain_id")
+	d.SetPartial("enable_bmc")
 	d.SetPartial("environment_id")
 	d.SetPartial("hostgroup_id")
 	d.SetPartial("operatingsystem_id")
-	d.SetPartial("enable_bmc")
+	d.SetPartial("provision_method")
+	d.SetPartial("pxe_loader")
 
 	setResourceDataFromForemanInterfacesAttributes(d, fh.InterfacesAttributes)
 }
@@ -647,6 +697,8 @@ func resourceForemanHostUpdate(d *schema.ResourceData, meta interface{}) error {
 		d.HasChange("environment_id") ||
 		d.HasChange("hostgroup_id") ||
 		d.HasChange("operatingsystem_id") ||
+		d.HasChange("provision_method") ||
+		d.HasChange("pxe_loader") ||
 		d.HasChange("interfaces_attributes") {
 
 		log.Debugf("host: [%+v]", h)

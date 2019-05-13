@@ -140,7 +140,7 @@ func CompareResourceDataAttributes(t *testing.T, m map[string]schema.ValueType, 
 
 // The location to the test data folder containing the mock responses for
 // each API endpoint
-const TestDataPath = "testdata/1.11"
+const TestDataPath = "testdata/1.20"
 
 // RandForemanObject creates a random ForemanObject
 func RandForemanObject() api.ForemanObject {

@@ -1,0 +1,81 @@
+{
+  "total": 348,
+  "subtotal": 2,
+  "page": 1,
+  "per_page": 100,
+  "search": "dev.foo.bar",
+  "sort": {
+    "by": null,
+    "order": null
+  },
+  "results": [
+    {
+      "network": "10.0.0.0",
+      "cidr": 24,
+      "mask": "255.255.255.0",
+      "priority": null,
+      "vlanid": "2192",
+      "gateway": "10.0.0.1",
+      "dns_primary": "10.225.18.202",
+      "dns_secondary": "10.225.18.203",
+      "from": "10.0.0.1",
+      "to": "10.228.192.244",
+      "created_at": "2016-09-07 02:31:24 UTC",
+      "updated_at": "2017-12-04 13:50:55 UTC",
+      "ipam": "DHCP",
+      "boot_mode": "DHCP",
+      "id": 303,
+      "name": "10.0.0.0",
+      "network_address": "10.0.0.0/24",
+      "dhcp": {
+        "name": "else.where",
+        "id": 38,
+        "url": "https://else.where:8443"
+      },
+      "tftp": {
+        "name": "else.where",
+        "id": 38,
+        "url": "https://else.where:8443"
+      },
+      "dns": {
+        "name": "else.where",
+        "id": 39,
+        "url": "https://else.where:8443"
+      }
+    },
+    {
+      "network": "10.0.0.0",
+      "cidr": 24,
+      "mask": "255.255.255.0",
+      "priority": null,
+      "vlanid": "2193",
+      "gateway": "10.0.0.1",
+      "dns_primary": "10.225.18.202",
+      "dns_secondary": "10.225.18.203",
+      "from": "10.0.0.1",
+      "to": "10.228.193.199",
+      "created_at": "2016-09-07 02:31:24 UTC",
+      "updated_at": "2017-12-04 13:51:07 UTC",
+      "ipam": "DHCP",
+      "boot_mode": "DHCP",
+      "id": 304,
+      "name": "10.0.0.0",
+      "network_address": "10.0.0.0/24",
+      "dhcp": {
+        "name": "else.where",
+        "id": 38,
+        "url": "https://else.where:8443"
+      },
+      "tftp": {
+        "name": "else.where",
+        "id": 38,
+        "url": "https://else.where:8443"
+      },
+      "dns": {
+        "name": "else.where",
+        "id": 39,
+        "url": "https://else.where:8443"
+      }
+    }
+  ]
+}

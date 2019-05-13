@@ -1,0 +1,34 @@
+{
+  "network": "10.0.0.0",
+  "cidr": 24,
+  "mask": "255.255.255.0",
+  "priority": null,
+  "vlanid": "2192",
+  "gateway": "10.0.0.1",
+  "dns_primary": "10.0.0.202",
+  "dns_secondary": "10.0.0.203",
+  "from": "10.0.0.11",
+  "to": "10.0.0.244",
+  "created_at": "2016-09-07 02:31:24 UTC",
+  "updated_at": "2017-12-04 13:50:55 UTC",
+  "ipam": "DHCP",
+  "boot_mode": "DHCP",
+  "id": 303,
+  "name": "10.0.0.0",
+  "network_address": "10.0.0.0/24",
+  "dhcp": {
+    "name": "else.where",
+    "id": 38,
+    "url": "https://else.where:8443"
+  },
+  "tftp": {
+    "name": "else.where",
+    "id": 38,
+    "url": "https://else.where:8443"
+  },
+  "dns": {
+    "name": "else.where",
+    "id": 39,
+    "url": "https://else.where:8443"
+  }
+}
